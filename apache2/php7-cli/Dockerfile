@@ -1,5 +1,7 @@
 FROM php:7.0-apache
 
+MAINTAINER Tim Weyand <tim.weyand@klambt.de>
+
 # Setting Environment
 RUN export LANGUAGE=de_DE.UTF-8 && \
       export LANG=de_DE.UTF-8 && \
