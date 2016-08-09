@@ -36,9 +36,9 @@ RUN { \
 
 
 #Copy configuration
-COPY conf/timezone /etc/timezone
-COPY conf/php.ini /usr/local/etc/php/
-ADD  conf/pagespeed.conf /etc/apache2/mods-enabled/pagespeed.conf
+COPY /conf/timezone /etc/timezone
+COPY /conf/php.ini /usr/local/etc/php/
+ADD  /conf/pagespeed.conf /etc/apache2/mods-enabled/pagespeed.conf
 COPY www/empty /var/www/html
 
 WORKDIR /var/www/html
