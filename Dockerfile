@@ -1,5 +1,4 @@
 FROM php:7.0-apache
-
 MAINTAINER Tim Weyand <tim.weyand@klambt.de>
 
 # Setting Environment
@@ -41,6 +40,7 @@ RUN { \
 COPY ./conf/timezone /etc/timezone
 COPY ./conf/php.ini /usr/local/etc/php/
 ADD  ./conf/pagespeed.conf /etc/apache2/mods-enabled/pagespeed.conf
+COPY ./www/private /var/www/private
 COPY ./www/empty /var/www/html
 
 WORKDIR /var/www/html
