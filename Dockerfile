@@ -44,5 +44,6 @@ COPY ./www/private/ /var/www/private/
 COPY ./www/empty /var/www/html
 
 WORKDIR /var/www/html
+VOLUME ["/var/www/html", "/var/www/private"]
 
 EXPOSE 80
