@@ -43,7 +43,7 @@ ADD  ./conf/pagespeed.conf /etc/apache2/mods-enabled/pagespeed.conf
 COPY ./www/private/ /var/www/private/
 COPY ./www/empty /var/www/html
 
+VOLUME  ["/var/www/html","/var/www/private"]
 WORKDIR /var/www/html
-VOLUME ["/var/www/html", "/var/www/private"]
 
 EXPOSE 80
