@@ -22,6 +22,7 @@ else
     echo '#################################################'
 
     cp /root/conf/php.ini /usr/local/etc/php/
+    cp /root/conf/000-default.conf /etc/apache2/sites-available/
 
     if [ "$APACHE2_PORT" != 80 ]; then
         echo "Listen $APACHE2_PORT" > /etc/apache2/ports.conf
