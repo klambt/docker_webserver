@@ -29,6 +29,12 @@ Added Debian Packages
 * unzip
 * git
 * libmemcached-dev
+* libdbd-mysql-perl
+* libdbi-perl
+* libmysqlclient18
+* libterm-readkey-perl
+* mysql-client-5.5
+* mysql-common
 
 Added Apache2 Modules
 ======
