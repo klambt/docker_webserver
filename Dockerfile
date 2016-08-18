@@ -3,6 +3,7 @@ MAINTAINER Tim Weyand <tim.weyand@klambt.de>
 
 ENV UPDATE_DEBIAN             1
 ENV INSTALL_PAGESPEED         1
+ENV INSTALL_COMPOSER          1
 ENV USE_OPCACHE_OPTIMIZATION  1
 ENV USE_PHP7_MEMCACHE         1
 ENV WORKDIR                   /var/www/html
@@ -25,6 +26,7 @@ RUN chmod +x /usr/local/bin/klambt_docker_*.sh \
     && /usr/local/bin/klambt_docker_install_packages.sh \
     && /usr/local/bin/klambt_docker_install_php7_memcached.sh \    
     && /usr/local/bin/klambt_docker_install_pagespeed.sh \
+    && /usr/local/bin/klambt_docker_install_composer.sh \
     && /usr/local/bin/klambt_docker_setup_opcache_optimization.sh \
     && /usr/local/bin/klambt_docker_download_application.sh \
     && /usr/local/bin/klambt_docker_production_ready.sh \

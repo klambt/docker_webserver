@@ -44,10 +44,15 @@ Added php Modules
 * zip
 * memcached (for php7 compiled from sources [php-memcached-dev] (https://github.com/php-memcached-dev/php-memcached))
 
+Added php scripts
+======
+* [PHP composer] (https://getcomposer.org)
+
 Environment Options (during Build)
 ======
 * UPDATE_DEBIAN (default:1) - option to skip updates
 * INSTALL_PAGESPEED (default:1) - option to install [Google PageSpeed Module] (https://developers.google.com/speed/pagespeed/module/)
+* INSTALL_COMPOSER (default:1) - option to install [PHP composer] (https://getcomposer.org)
 * USE_OPCACHE_OPTIMIZATION (default:1) - setting up basic opcache optimization
 * USE_PHP7_MEMCACHE (default:1) - compile and install php7 [php-memcached-dev] (https://github.com/php-memcached-dev/php-memcached) modul
 * WORKDIR (default:/var/www/html) - htdocs directory
