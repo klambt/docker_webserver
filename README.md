@@ -35,6 +35,7 @@ Added Debian Packages
 * libterm-readkey-perl
 * mysql-client-5.5
 * mysql-common
+* apt-utils
 
 Added Apache2 Modules
 ======
