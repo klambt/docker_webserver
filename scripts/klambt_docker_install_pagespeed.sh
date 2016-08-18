@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$USE_OPCACHE_OPTIMIZATION" = 1 ]; then
+if [ "$INSTALL_PAGESPEED" = 1 ]; then
     echo '#############################################'
     echo '#          INSTALL GOOGLE PAGESPEED         #'
     echo '#                                           #'
