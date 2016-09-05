@@ -11,3 +11,4 @@ docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr
 docker-php-ext-install $(grep -vE "^\s*#" /root/conf/php_extentions.conf  | tr "\n" " ")
 docker-php-ext-install sockets
 a2enmod rewrite
+a2enmod setenvif
