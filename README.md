@@ -1,6 +1,6 @@
 # klambt/webserver
 
-Apache 2.4.25+, [Google PageSpeed Module] (https://developers.google.com/speed/pagespeed/module/), PHP 7.0.18+, [PHP composer] (https://getcomposer.org)
+Apache 2.4.25+, [mod_brotli](https://github.com/kjdev/apache-mod-brotli.git),[Google PageSpeed Module](https://developers.google.com/speed/pagespeed/module/), PHP 7.0.18+, [PHP composer](https://getcomposer.org)
 
 Autobuild
 ======
@@ -49,8 +49,8 @@ Added Debian Packages
 
 Added Apache2 Modules
 ======
-* [Google PageSpeed Module] (https://developers.google.com/speed/pagespeed/module/)
-* [Brotli] (https://github.com/kjdev/apache-mod-brotli.git)
+* [Google PageSpeed Module](https://developers.google.com/speed/pagespeed/module/)
+* [Brotli](https://github.com/kjdev/apache-mod-brotli.git)
 * Rewrite
 
 Added php 7 Modules
@@ -68,12 +68,12 @@ Added php 7 Modules
 
 Added php scripts
 ======
-* [PHP composer] (https://getcomposer.org)
+* [PHP composer](https://getcomposer.org)
 
 Environment Options (during Build)
 ======
-* INSTALL_PAGESPEED (default:1) - option to install [Google PageSpeed Module] (https://developers.google.com/speed/pagespeed/module/)
-* INSTALL_COMPOSER (default:1) - option to install [PHP composer] (https://getcomposer.org)
+* INSTALL_PAGESPEED (default:1) - option to install [Google PageSpeed Module](https://developers.google.com/speed/pagespeed/module/)
+* INSTALL_COMPOSER (default:1) - option to install [PHP composer](https://getcomposer.org)
 * WORKDIR (default:/var/www/html) - htdocs directory
 * LANGUAGE (default:de_DE.UTF-8) - Linux Language
 * TIMEZONE (default:Europe/Berlin) - Timezone of the Image
