@@ -12,7 +12,7 @@ TAGS
 ======
 | tag                          | Dockerfile                      | size |
 | ---------------------------- | -------------------------------- | ---- |
-| ```latest```, ```php7.0``` | [Dockerfile](https://github.com/klambt/webserver/blob/master/Dockerfile)   | [![](https://images.microbadger.com/badges/image/klambt/webserver:php7.0.svg)](https://microbadger.com/images/klambt/webserver:php7.0 "Get your own image badge on microbadger.com") |
+| ```latest```, ```php7.0``` | [Dockerfile](https://github.com/klambt/docker_webserver/blob/master/Dockerfile)   | [![](https://images.microbadger.com/badges/image/klambt/webserver:php7.0.svg)](https://microbadger.com/images/klambt/webserver:php7.0 "Get your own image badge on microbadger.com") |
 
 
 Added Debian Packages
