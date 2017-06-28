@@ -1,0 +1,2 @@
+# Load brotli module
+LoadModule brotli_module modules/mod_brotli.so

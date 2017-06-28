@@ -1,0 +1,67 @@
+image: docker:latest
+
+variables:
+  DOCKER_DRIVER: 'overlay'
+  DOCKER_HOST: 'tcp://localhost:2375'
+  CONTAINER_TEST_IMAGE: registry.klambt.services/klambt/webserver/test:$CI_COMMIT_REF_NAME
+  CONTAINER_RELEASE_IMAGE: registry.klambt.services/klambt/webserver:$CI_COMMIT_REF_NAME
+  CONTAINER_MASTER_IMAGE: registry.klambt.services/klambt/webserver:latest
+  TRIGGER_REPO_URL: "curl -X POST -F token=fbb00ce25012824c335a352cd2f1dc -F ref=$CI_COMMIT_REF_NAME https://gitlab.klambt.de/api/v4/projects/33/trigger/pipeline"
+
+services:
+  - docker:dind
+
+stages:
+ - build
+ - test
+ - release
+ - trigger
+
+build-image:
+  stage: build
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.klambt.services
+    - docker build -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+
+http-test:
+   image: registry.klambt.services/klambt/docker-ci-runner:latest
+   stage: test
+   script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.klambt.services
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker run -d --name webserver-test-image-$CI_COMMIT_REF_NAME $CONTAINER_TEST_IMAGE
+    - docker run -d --volume /$CI_PROJECT_PATH/tests:/root/tests --name test-runner-$CI_COMMIT_REF_NAME --link=webserver-test-image-$CI_COMMIT_REF_NAME:webserver registry.klambt.services/klambt/docker-ci-runner /bin/sh -c "while true; do echo text ; done"
+    - chmod 555 /$CI_PROJECT_PATH/tests/*
+    - docker exec -t test-runner-$CI_COMMIT_REF_NAME /root/tests/basic-webserver-test.sh
+    - docker rm -f -v webserver-test-image-$CI_COMMIT_REF_NAME test-runner-$CI_COMMIT_REF_NAME
+
+release-branches:
+  stage: release
+  except:
+    - master      
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.klambt.services
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE  
+    
+release-master:
+  only:
+    - master
+  stage: release
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.klambt.services
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_MASTER_IMAGE
+    - docker push $CONTAINER_MASTER_IMAGE  
+
+trigger_build:
+  stage: trigger
+  image: registry.klambt.services/klambt/docker-ci-runner
+  only:
+    - master
+    - stage
+  script:
+    - $TRIGGER_REPO_URL
+    

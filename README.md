@@ -1,55 +1,70 @@
 # klambt/webserver
 
-This Dockerimage is intented to be used with:
-* Static Websites which are stored as zip or tar.gz and can be loaded via wget
-* KLAMBT/Drupal (at: [Dockerhub](https://hub.docker.com/r/klambt/drupal/) or [Github](https://github.com/klambt/docker_drupal)).
-
-The Docker provides an apache2 Server [php:7.0-apache](https://hub.docker.com/_/php/) or an apache2 Server [php:5.6-apache](https://hub.docker.com/_/php/) (Depending on the Tag) 
+Apache 2.4.25+, [Google PageSpeed Module] (https://developers.google.com/speed/pagespeed/module/), PHP 7.0.18+, [PHP composer] (https://getcomposer.org)
 
 Autobuild
 ======
 This Image will be updated if:
-* The [php](https://hub.docker.com/_/php/) Base Image is Updated (hook)
+* The [tweyand/ubuntu:zesty](https://hub.docker.com/r/tweyand/ubuntu/) Base Image is Updated (hook)
 * We change it in github
 
 TAGS
 ======
-* latest - Base Image [php:7.0-apache](https://hub.docker.com/_/php/)
-* php-7 - Base Image [php:7.0-apache](https://hub.docker.com/_/php/)
-* php-5.6 - Base Image [php:5.6-apache](https://hub.docker.com/_/php/)
+| tag                          | Dockerfile                      | size |
+| ---------------------------- | -------------------------------- | ---- |
+| ```latest```, ```php7.0``` | [Dockerfile](https://github.com/klambt/webserver/blob/master/Dockerfile)   | [![](https://images.microbadger.com/badges/image/klambt/webserver:php7.0.svg)](https://microbadger.com/images/klambt/webserver:php7.0 "Get your own image badge on microbadger.com") |
+
 
 Added Debian Packages
 ======
-* libpng12-dev
-* libjpeg-dev
-* libpq-dev
-* libz-dev
-* wget
-* zip
-* unzip
+* libedit2
+* libsqlite3-0
+* libxml2
+* apache2
 * git
-* libmemcached-dev
-* libdbd-mysql-perl
-* libdbi-perl
-* libmysqlclient18
-* libterm-readkey-perl
-* mysql-client-5.5
-* mysql-common
+* mysql-client
+* unzip
+* vim
+* libfreetype6-dev
+* libjpeg-turbo8
+* libxml2-dev
+* libpng-dev
+* cron
+* ssmtp
 * sudo
+* php-memcached
+* php-mysql
+* php-xml
+* php7.0-curl
+* php-uploadprogress
+* php7.0-mbstring
+* php7.0-common
+* php7.0-gd
+* php7.0-opcache
+* php7.0-bcmath
+* memcached
+* libapache2-mod-php
+* ruby-full
+* rubygems
 
 Added Apache2 Modules
 ======
 * [Google PageSpeed Module] (https://developers.google.com/speed/pagespeed/module/)
+* [Brotli] (https://github.com/kjdev/apache-mod-brotli.git)
 * Rewrite
 
-Added php Modules
+Added php 7 Modules
 ======
-* gd
+* memcached
+* mysql
+* xml
+* curl                                            
 * mbstring
-* pdo
-* pdo_mysql
-* zip
-* memcached (for php7 compiled from sources [php-memcached-dev] (https://github.com/php-memcached-dev/php-memcached))
+* common
+* gd
+* opcache
+* bcmath
+* php-uploadprogress
 
 Added php scripts
 ======
@@ -57,23 +72,12 @@ Added php scripts
 
 Environment Options (during Build)
 ======
-* UPDATE_DEBIAN (default:1) - option to skip updates
 * INSTALL_PAGESPEED (default:1) - option to install [Google PageSpeed Module] (https://developers.google.com/speed/pagespeed/module/)
 * INSTALL_COMPOSER (default:1) - option to install [PHP composer] (https://getcomposer.org)
-* USE_OPCACHE_OPTIMIZATION (default:1) - setting up basic opcache optimization
-* USE_PHP7_MEMCACHE (default:1) - compile and install php7 [php-memcached-dev] (https://github.com/php-memcached-dev/php-memcached) modul
 * WORKDIR (default:/var/www/html) - htdocs directory
 * LANGUAGE (default:de_DE.UTF-8) - Linux Language
 * TIMEZONE (default:Europe/Berlin) - Timezone of the Image
-* APACHE2_PORT (default: 80) - Apache2 Listening Port
-* DOWNLOAD_APP_BUILD_FROM (default: 0) - Download an zip or tar.gz file to serve as Website
-* COPY_EMPTY_WWW (default: 0) - Serve an empty wwwroot
-* SETUP_FOR_PRODUCTION (default: 0) - Serve as Production or Testing Server
-
-Environment Options (during Runtime)
-=====
-* DOWNLOAD_APP_RUN_FROM (default: 0) - Download an zip or tar.gz file to serve as Website
-
+* SETUP_FOR_PRODUCTION (default: 1) - Serve as Production or Testing Server
 
 PULL
 =======
@@ -87,6 +91,3 @@ Building
 Exposed Ports
 =======
 * 80 - HTTP Port
-
-
-Please see klambt/drupal at [Dockerhub](https://hub.docker.com/r/klambt/drupal/) or [Github](https://github.com/klambt/docker_drupal) for run examples.
